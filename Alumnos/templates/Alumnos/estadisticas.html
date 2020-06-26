@@ -1,0 +1,281 @@
+{% extends "Alumnos/home.html" %}
+{% load static %}
+{% load my_tags %}
+
+{% block contenido %}
+<script src="{%static 'core/lib/adminlte/plugins/chart.js/Chart.min.js' %}"></script>
+<script src="{%static 'core/lib/adminlte/plugins/jquery-Knob/jquery.Knob.min.js' %}"></script>
+
+<style>
+  .card {
+    margin: 1rem auto;
+
+  }
+  #container .news-feed {
+    background-color: #fff;
+    width: 100%;
+    border-radius:15px
+  }
+  #container .news-feed .catalog {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  #container .news-feed .catalog li {
+    display: block;
+    margin: 0.7em;
+    text-align: center;
+    width: 150px;
+  }
+  #container .news-feed .catalog li img {
+    height: 200px;
+    width: 150px;
+    border-radius:30px;
+  }
+  #container .news-feed .catalog li a,
+  #container .news-feed .catalog li span {
+    display: block;
+  }
+  #container .news-feed .catalog li span {
+    color: #6c6c6c;
+    font-size: 0.8em;
+  }
+  #container .news-feed .pagination{
+    border-top: 3px solid #ffb545;
+    padding: .7em;
+    text-align: center;
+  }
+  #container .news-feed .pagination .step-links a{
+    background-color: #ffb545;
+    color: #FFF4E3;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  #container .news-feed .pagination .step-links a{
+    border-radius: 5px;
+    padding: .3em;
+  }
+  #container .news-feed .pagination .step-links .current{
+    margin: 0 .5em;
+  }
+  
+  
+  </style>
+
+
+<div class="content-wrapper">
+  <section class="content">
+          <div class="row">
+                  <div class="col-12">
+                          <div class="card">
+                               
+
+                                <div class="card-body">
+                                  <div class="row">
+                                    <div class="col-md-3 col-sm-6 col-12">
+                                      <div class="info-box">
+                                        <span class="info-box-icon bg-danger"><i class="far fa-user"></i></span>
+                          
+                                        <div class="info-box-content">
+                                          <span class="info-box-text">USUARIOS</span>
+                                          <span class="info-box-number">{{usuarios}}</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                      </div>
+                                      <!-- /.info-box -->
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 col-12">
+                                      <div class="info-box">
+                                        <span class="info-box-icon bg-info"><i class="far fa-eye"></i></span>
+                          
+                                        <div class="info-box-content">
+                                          <span class="info-box-text">VISITANTES</span>
+                                          <span class="info-box-number">{% contador request %}</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                      </div>
+                                      <!-- /.info-box -->
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-md-3 col-sm-6 col-12">
+                                      <div class="info-box">
+                                        <span class="info-box-icon bg-success"><i class="fas fa-book-reader"></i></span>
+                          
+                                        <div class="info-box-content">
+                                          <span class="info-box-text">LIBROS</span>
+                                          <span class="info-box-number">{{libros}}</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                      </div>
+                                      <!-- /.info-box -->
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-md-3 col-sm-6 col-12">
+                                      <div class="info-box">
+                                        <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+                          
+                                        <div class="info-box-content">
+                                          <span class="info-box-text"> A. RESIDENCIA</span>
+                                          <span class="info-box-number">{{archivos}}</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                      </div>
+                                      <!-- /.info-box -->
+                                    </div>
+                                    <!-- /.col -->                                    
+                                    <div class="col-md-3 col-sm-6 col-12">
+                                      <div class="info-box">
+                                        <span class="info-box-icon bg-light"><i class="fas fa-seedling"></i></span>
+                          
+                                        <div class="info-box-content">
+                                          <span class="info-box-text">RevistasCientificas</span>
+                                          <span class="info-box-number">{{cien}}</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                      </div>
+                                      <!-- /.info-box -->
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 col-12">
+                                      <div class="info-box">
+                                        <span class="info-box-icon bg-dark"><i class="fas fa-robot"></i></span>
+                          
+                                        <div class="info-box-content">
+                                          <span class="info-box-text">RevistasOsio</span>
+                                          <span class="info-box-number">{{osi}}</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                      </div>
+                                      <!-- /.info-box -->
+                                    </div>
+                                    <!-- /.col -->
+                                  </div>
+                                  
+
+                                
+                                      <section id="container">
+                                            <div class="careers">
+                                                  <div class="news-feed">
+                                                      <div class="catalog">
+                                                        
+                                                          <!-- DONUT CHART -->
+                                                          <div class="col-md-6 col-sm-6 col-12">
+                                                              <div class="card card-success">
+                                                                <div class="card-header">
+                                                                  <h3 class="card-title">Estadistica de Genero</h3>
+
+                                                                  <div class="card-tools">
+                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                  <canvas id="oilChart" ></canvas>
+                                                                </div>
+                                                              </div>
+                                                                <!-- /.card-body -->
+                                                          </div>
+                                                          <div class="col-md-6 col-sm-6 col-12">
+                                                            <div class="card card-success">
+                                                              <div class="card-header">
+                                                                <h3 class="card-title">Usuarios por Carreras</h3>
+
+                                                                <div class="card-tools">
+                                                                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                                                  </button>
+                                                                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                                                </div>
+                                                              </div>
+                                                              <div class="card-body">
+                                                                <canvas id="chart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                                                <script>
+                                                                        var carreras = document.getElementById("chart1");
+                                                                        Chart.defaults.global.defaultsFontFamily = "Lato";
+                                                                        Chart.defaults.global.defaultsFontSize = 18;
+                                                                        
+                                                                        var carreraDatos = { 
+                                                                          
+                                                                          labels:["Agronomia({{agronomia|safe}})","Administracion({{administracion|safe}})","Biologia({{biologia|safe}})","GestionEmpresarial({{gestion|safe}})","Informatica({{informatica|safe}})","Tics({{tics|safe}})"
+                                                                          ],
+                                                                          datasets:[
+                                                                            {
+                                                                              data:[{{agronomia|safe}},{{administracion|safe}},{{biologia|safe}},{{gestion|safe}},{{informatica|safe}},{{tics|safe}}],
+                                                                              backgroundColor:[
+                                                                                "#FF6384",
+                                                                                "#FF0000",
+                                                                                "#84FF63",
+                                                                                "#FFFF00",
+                                                                                "#6384FF",
+                                                                                "#800080",
+                                                                              
+                                                                              ]
+                                                                            }
+                                                                          ] 
+                                                                        };
+                  
+                                                                        var pieChart = new Chart(carreras,{
+                                                                          type:'doughnut',
+                                                                          data: carreraDatos
+                                                                        })                                                                                                                                  
+                                                                </script>
+                                                              </div>
+                                                            </div>
+                                                              <!-- /.card-body -->
+                                                        </div>
+                                                        <div class="myChart">
+                                                          <canvas id="myChart" width="600" height="400"></canvas>
+                                                      
+                                                          
+                                                      </div>
+                                                              <!-- /.card -->
+                                                      </div>
+                                                  </div>
+                                             </div>
+                                      </section>
+                                </div>
+                          </div>
+                  </div>
+          </div>
+  </section>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
+    var oliCanvas = document.getElementById("oilChart");
+    Chart.defaults.global.defaultsFontFamily = "Lato";
+    Chart.defaults.global.defaultsFontSize = 18;
+    
+    var oilData = { 
+      
+      labels:["Hombres({{datosM|safe}})","Mujeres({{datosF|safe}}"
+      ],
+      datasets:[
+        {
+          data:[{{datosM|safe}},{{datosF|safe}}],
+          backgroundColor:[
+            "#FF0000",
+            "#000080",
+           
+          ]
+        }
+      ] 
+    };
+
+    var pieChart = new Chart(oliCanvas,{
+      type:'pie',
+      data: oilData
+    })
+
+    
+
+</script>
+
+
+{% endblock contenido %}

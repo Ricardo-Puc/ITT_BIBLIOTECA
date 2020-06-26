@@ -1,0 +1,101 @@
+{% extends "Alumnos/home.html" %}
+{% load static %}
+{% block contenido %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<style>
+      .card {
+        margin: 1rem auto;
+      }
+      .table{
+          text-align: center;
+        }
+</style>
+
+
+<div class="content-wrapper">
+      <section class="content">
+            <div class="row">
+                      <div class="col-12">
+                              <div class="card">
+                                    
+                                    <div class="card-body">
+                                        {% if messages %}
+
+                                        {% for m in messages  %}
+                
+                                        <div class="alert alert-success alert-dismissible">
+                                              <h5><i class="icon fas fa-check"></i> {{m}}</h5>
+                                        </div>
+                                        {% endfor %}
+                
+                                  {% endif %}
+                                            
+                                            <div class="col-md-5 col-sm-3 col-12">
+                                                <div class="card-body box-profile">
+                                                    <div class="text-center">
+                                                      <img class="profile-user-img img-fluid img-circle"
+                                                           src="{% static 'core/img/inicio-logo.jpg' %}"
+                                                           alt="User profile picture">
+
+                                                    </div>
+                                                    
+                                                      </div>
+                                                      {% for a in usuario %}
+                                                    <h3 class="profile-username text-center">{{a.email}}</h3>
+                                    
+                                                    <p class="text-muted text-center">Datos personales</p>
+                                                    
+                                                    
+                                                        
+                                                    
+                                                        
+                                                    <ul class="list-group list-group-unbordered mb-3">
+                                                      <li class="list-group-item">
+                                                        <b>Email:</b> <a class="float-right">{{a.email}}</a>
+                                                      </li>
+                                                      <li class="list-group-item">
+                                                        <b>Matricula:</b> <a class="float-right">{{a.matricula}}</a>
+                                                      </li>
+                                                      <li class="list-group-item">
+                                                        <b>Nombre:</b> <a class="float-right">{{a.nombre}} </a>
+                                                      </li>
+                                                      <li class="list-group-item">
+                                                        <b>Apellido Paterno:</b> <a class="float-right">{{a.apellido_paterno}}</a>
+                                                      </li>
+                                                      <li class="list-group-item">
+                                                        <b>Apellido Materno:</b> <a class="float-right">{{a.apellido_materno}}</a>
+                                                      </li>
+                                                      <li class="list-group-item">
+                                                        <b>Carrera:</b> <a class="float-right">{{a.carrera}}</a>
+                                                      </li>
+                                                      <li class="list-group-item">
+                                                        <b>Semestre:</b> <a class="float-right">{{a.semestre}}</a>
+                                                      </li>
+                                                      <li class="list-group-item">
+                                                        <b>Genero:</b> <a class="float-right">{{a.genero}}</a>
+                                                      </li>
+                                                      <li class="list-group-item">
+                                                        <b>Edad:</b> <a class="float-right">{{a.edad}}</a>
+                                                      </li>
+                                                  
+                                                    </ul>
+                                    
+                                                    <a href="{% url 'actualizar'%}" class="btn btn-primary btn-block"><b>Actualizar</b></a>
+                                                  </div>
+                                                  {% endfor %}
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                              </div>
+                      </div>
+            </div>
+      </section>
+</div>
+
+
+{% endblock contenido %}

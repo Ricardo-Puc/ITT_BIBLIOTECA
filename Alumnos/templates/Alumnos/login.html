@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Biblioteca-ITT</title>
+    <!-- Favicon icon -->
+    {% load static %} 
+    {% load bootstrap4 %}
+    {% bootstrap_css %} 
+     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+ 
+  
+      <link rel="stylesheet" href="{% static 'core/css/estilos.css' %}">
+     
+
+      {% load bootstrap4 %}
+      {% bootstrap_css %}
+</head>
+
+<body>
+  
+
+<div class="sidenav">
+      <img src="{% static 'core/img/images.jpeg' %}" style="border-radius: 100%;" width="300" height="270" alt="logo de la pagina">
+      <div class="login-main-text" style="padding: 10px;
+      color: #fff;">
+         <h2> Biblioteca Virtual</h2>
+         
+         <p>Inicia sesión o Registrate</p>
+      </div>
+</div>
+
+<div class="main">
+                  {% if messages %}
+
+                        {% for m in messages  %}
+
+                        <div class="alert alert-success alert-dismissible">
+                              <h5><i class="icon fas fa-check"></i> {{m}}</h5>
+                        </div>
+                        {% endfor %}
+
+                  {% endif %}
+      <div  class="col-md-6 col-sm-12">
+            
+            <div class="login-form">
+                  
+                  <form method="POST" action="">{% csrf_token %}
+                        <strong>INICIO SESION</strng> 
+                              
+                                   
+                        <div>
+                           <br>
+                        </div>
+                        <div class="form-group">
+                              <h6>Email</h6>
+                              <input type="text" class="form-control" placeholder="ingrese su correo Institucional" name="email">
+                        </div>
+                        <div class="form-group">
+                              <h6>contraseña</h6>
+                              <input type="password" class="form-control" placeholder="contraseña"name="password">
+                        </div>
+                        <button type="submit" class="btn btn-block btn-outline-success btn-xs" value="login">Ingresar</button>                        
+                       <button  class="btn btn-block btn-outline-info btn-xs"><a href="{% url 'registro' %}">Registrame</button></a>
+                        
+                  </form>
+                  <br><br>
+            </div>
+      </div>
+</div>
+{% bootstrap_javascript jquery='full' %}  
+</body>
+
+</html>

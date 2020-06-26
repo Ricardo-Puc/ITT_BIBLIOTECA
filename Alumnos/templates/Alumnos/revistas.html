@@ -1,0 +1,142 @@
+{% extends "Alumnos/home.html" %}
+{% load static %}
+
+{% block contenido %}
+
+
+<style>
+  .card {
+    margin: 1rem auto;
+
+  }
+  #container .news-feed {
+    background-color: #fff;
+    width: 100%;
+    border-radius:15px
+  }
+  #container .news-feed .catalog {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  #container .news-feed .catalog li {
+    display: block;
+    margin: 0.7em;
+    text-align: center;
+    width: 150px;
+  }
+  #container .news-feed .catalog li img {
+    height: 170px;
+    width: 120px;
+    border-radius:30px;
+  }
+  #container .news-feed .catalog li a,
+  #container .news-feed .catalog li span {
+    display: block;
+  }
+  #container .news-feed .catalog li span {
+    color: #6c6c6c;
+    font-size: 0.8em;
+  }
+  #container .news-feed .pagination{
+    border-top: 3px solid #ffb545;
+    padding: .7em;
+    text-align: center;
+  }
+  #container .news-feed .pagination .step-links a{
+    background-color: #ffb545;
+    color: #FFF4E3;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  #container .news-feed .pagination .step-links a{
+    border-radius: 5px;
+    padding: .3em;
+  }
+  #container .news-feed .pagination .step-links .current{
+    margin: 0 .5em;
+  }
+  
+  
+  </style>
+
+<div class="content-wrapper">
+        <section class="content">
+                <div class="row">
+                        <div class="col-12">
+                                <div class="card">
+                                      <div class="card-header">
+                                        <div class="card card-info">
+                                          <div class="card-header">
+                                            <h3 class="card-title">Revistas Científicas</h3>
+                                          </div>
+                                        
+
+                                        <div class="card-body">
+                                              <section id="container">
+                                                    <div class="careers">
+                                                          <div class="news-feed">
+                                                              <div class="catalog">
+                                                                    {% for a in revistas %}
+                                                                        <li>
+                                                                            <a href="{{a.link}}" ><img src="{{a.portada.url}}" alt="" /></a>  
+                                                                            <strong>Titulo:</strong><a>{{a.titulo}}</a>
+                                                                            <strong>Autor:</strong><a>{{a.autor}}</a>
+                                                                            <strong>Publicado:</strong><a>{{a.fecha}}</a>
+                                                                        </li>      
+                                                                    {% endfor %}
+                                                              </div>
+                                                          </div>
+                                                    </div>
+                                              </section>
+                                        </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </section>
+        <section class="content">
+          <div class="row">
+                  <div class="col-12">
+                          <div class="card">
+                                <div class="card-header">
+                                  <div class="card card-info">
+                                    <div class="card-header">
+                                      <h3 class="card-title">Revistas de Osio</h3>
+                                    </div>
+                                  
+
+                                  <div class="card-body">
+                                        <section id="container">
+                                              <div class="careers">
+                                                    <div class="news-feed">
+                                                        <div class="catalog">
+                                                              {% for a in osio %}
+                                                                  <li>
+                                                                      <a href="{{a.link}}" ><img src="{{a.portada.url}}" alt="" /></a>  
+                                                                      <strong>Titulo:</strong><a>{{a.titulo}}</a>
+                                                                      <strong>Autor:</strong><a>{{a.autor}}</a>
+                                                                      <strong>Publicado:</strong><a>{{a.fecha}}</a>
+                                                                  </li>      
+                                                              {% endfor %}
+                                                        </div>
+                                                    </div>
+                                              </div>
+                                        </section>
+                                  </div>
+                                  </div>
+                          </div>
+                  </div>
+          </div>
+  </section>
+
+       
+</div>
+
+
+{% endblock contenido %}

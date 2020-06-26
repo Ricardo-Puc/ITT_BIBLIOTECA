@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    {% load static %} 
+    {% load bootstrap4 %}
+    {% bootstrap_css %} 
+     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+ 
+   {# CSS Bootstrap #}
+  
+    
+<!------ Include the above in your HEAD tag ---------->
+      <link rel="stylesheet" href="{% static 'core/css/estilos.css' %}">
+     
+
+ 
+</head>
+
+<body>
+  
+
+      <div class="sidenav">
+            <img src="{% static 'core/img/images.jpeg' %}" style="border-radius: 100%;" width="300" height="270" alt="logo de la pagina">
+            <div class="login-main-text" style="padding: 10px;
+            color: #fff;">
+               
+               <h1>Formulario de Registro</h1>
+            </div>
+      </div>
+      <div class="main">
+            {% if messages %}
+
+                  {% for m in messages  %}
+
+                  <div class="alert alert-danger alert-dismissible">
+                        <h5><i class="icon fas fa-check"></i> Alert!</h5>
+                        {{ m }}
+                  </div>
+                  {% endfor %}
+
+            {% endif %}
+   
+            <div>
+                  <br>
+                  <br>
+               <form class="btn bg-sm btn-light" method="POST">
+                {{ form.as_p}}
+                {% csrf_token %}
+                <button type="submit" class="btn  btn-outline-success btn-xs">Registrar</button>   
+                <button  class="btn  btn-outline-info btn-xs"><a href="{% url 'loginPage' %}">Cancelar</button></a>
+                     
+               </form>
+               
+               
+            
+            </div>
+           <br>
+                  
+            
+        
+      </div>
+    
+</body>
+
+</html>

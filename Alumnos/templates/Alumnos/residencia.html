@@ -1,0 +1,100 @@
+{% extends "Alumnos/home.html" %}
+{% load static %}
+{% block contenido %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<style>
+      .card {
+        margin: 1rem auto;
+      }
+      .table{
+          text-align: center;
+        }
+</style>
+
+
+<div class="content-wrapper">
+      <section class="content">
+            <div class="row">
+                      <div class="col-12">
+                              <div class="card">
+                                
+                                    <div class="card-body">
+                                        <div class="col-md-12 col-sm-6 col-12">
+                                          <div class="card card-info">
+                                              <div class="card-header">
+                                                {% if messages %}
+
+                                                    {% for m in messages  %}
+                            
+                                                    <div class="alert alert-success alert-dismissible">
+                                                          <h5><i class="icon fas fa-check"></i> {{m}}</h5>
+                                                    </div>
+                                                    {% endfor %}
+                                                    
+                                                {% endif %}
+                                                <h3 class="card-title"></h3>
+                                               <strong>Archivo de Residencia Disponible</strong><br>
+                                                <strong>Realiza tu consulta con el nombre del archivo, el nombre del autor , la carrera o el tipo de archivo.</strong>
+                                                <br>
+                                                <input class="form-control" id="myInput" type="text" placeholder="search">
+                                              </div>
+                                              <div class="table-responsive">
+                                                  <table class="table table-info">
+                                                        <thead>
+                                                          <tr>
+                                                            
+                                                            <th>NOMBRE</th>
+                                                            <th>MATRICULA</th>                                                            
+                                                            <th>AUTOR(ES)</th>
+                                                            <th>CARRERA</th>
+                                                            <th>TIPO</th>                                                            
+                                                            <th>FECHA ELABORACION</th>
+                                                            
+                                                          </tr>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                        </thead>
+                                                    {% for datos in archivos  %}
+                                                        <tbody id="myTable">
+                                                            <tr>                                                              
+                                                              <td>{{datos.nombre_doc}}<a class="btn btn-block btn-warning btn-lg" href="{{datos.archivo.url}}">
+                                                                <i class="far fa-file-pdf">
+                                                                </i>                                                                                                                                  
+                                                            </a>  </td>
+                                                              <td>{{datos.matricula}}</td>                                                          
+                                                              <td>{{datos.autores}}</td>
+                                                              <td>{{datos.carrera}}</td>
+                                                              <td>{{datos.tipo_doc}}</td>                                                              
+                                                              <td>{{datos.fecha_elaboracion}}</td>
+                                                              
+                                                            </tr>
+                                                          </tbody>
+                                                    {% endfor %}
+                                                  </table>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                              </div>
+                      </div>
+            </div>
+      </section>
+</div>
+
+
+
+
+<script>
+  $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
+
+{% endblock contenido %}

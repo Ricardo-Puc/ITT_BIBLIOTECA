@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>ITT | TIZIMIN </title>
+ {% load static %}
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{% static 'core/lib/adminlte/plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{% static 'core/lib/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'%}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'core/lib/adminlte/css/adminlte.min.css'%}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <script src="{% static 'core/js/inicializacion.js'%}"></script>
+   
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+  <style>
+   .hello-msg{
+       font-size: 12px;
+       color: #fff;
+       margin-right: 2px;
+       
+   }
+   #container .news-feed {
+  background-color: #fff;
+  width: 100%;
+  border-radius:15px
+}
+   #container .news-feed .catalog {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+#container .news-feed .catalog li {
+  display: block;
+  margin: 0.7em;
+  text-align: center;
+  width: 100px;
+}
+#container .news-feed .catalog li img {
+  height: 300px;
+  width: 200px;
+  border-radius:30px;
+}
+video {
+  width: 100%;
+  height: auto;
+}
+
+  </style>
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+  <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+              </li>
+              <li class="nav-item d-none d-sm-inline-block">
+                <a href="{% url 'home' %}" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item d-none d-sm-inline-block">
+                <a href="{% url 'desarrollador'%}" class="nav-link">Contact</a>
+              </li>    
+        </ul>
+                <img src="{% static 'core/img/admin.jfif'%}" width="50" height="50" alt="" /></a>
+                <!-- SEARCH FORM -->
+              <h6>Biblioteca ITT</h6>
+            <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+              <!-- Messages Dropdown Menu -->     
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <span class="hello-msg"><a href="{% url 'logout'%}">Cerrar Sesion</a></span>
+          
+        </ul>
+
+      </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="{% static 'core/img/logo.sisitt_inicio.png' %}" alt="IT-TIZIMIN" class="brand-image"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">IT-TIZIMIN</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        
+        <div class="info">
+          <span class="hello-msg">Bienvenido, {{request.user}}</span>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+               <li class="nav-item">
+                <a href="{% url 'home' %}" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>
+                    inicio
+                  </p>
+                </a>
+              </li>
+          <li class="nav-item">
+            <a href="{% url 'perfil' %}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+              perfil
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'libros' %}" class="nav-link">
+              <i class="nav-icon fas  fa-book"></i>
+              
+              <p>
+                Libros
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'revistas' %}" class="nav-link">
+             <i class="nav-icon fas  fa-eye"></i>
+              <p >
+                Revistas
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'residencia' %}" class="nav-link">
+            <i class="nav-icon fas  fa-folder-open"></i>
+              <p>
+                Archivos de Residencia
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'estadisticas' %}" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Estadisticas
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'desarrollador' %}" class="nav-link">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+                Desarrollador
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'desarrollador' %}" class="nav-link">
+              <p>
+                <div class="image">
+                  <img src="{% static 'core/img/1.png' %}" width="200"  alt="User Image">
+                </div>
+              </p>
+            </a>
+          </li>
+         
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+<div class="contenido">
+
+{% block contenido %}
+<div class="content-wrapper">
+    <section class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body" >
+                  <section id="container">
+                       <div class="careers">                          
+                                <div class="news-feed">                              
+                                    <div class="catalog">
+                                          {% for video in video %}
+                                          <video  width="630" height="300" controls autoplay>
+                                            <source src="{{video.video.url}}" type="video/mp4">
+                                            Tu navegador no soporta HTML5 video.
+                                        </video>  
+                                          {% endfor %}
+                                    </div>
+                                </div>
+                                <br>                           
+                                <div class="container">                        
+                                       <div class="row">
+                                                  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                                        <div class="card-body box-profile">
+
+                                                            <p class="text-muted text-center">MISION</p>
+                                            
+                                                            <ul class="list-group list-group-unbordered mb-3">
+                                                              <li class="list-group-item">
+                                                                <b>El Sistema Bibliotecario tiene como misión facilitar a la comunidad universitaria recursos y servicios informativos de calidad, con eficiencia, oportunidad y confiabilidad tecnológica.
+                                                                </b>
+                                                              </li>                                              
+                                                            </ul>
+                                                        </div>                                                    
+                                                  </div>
+                                                  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                                    <div class="card-body box-profile">
+
+                                                        <p class="text-muted text-center">VISION</p>
+                                        
+                                                        <ul class="list-group list-group-unbordered mb-3">
+                                                          <li class="list-group-item">
+                                                            <b>Que facilite recursos y servicios de información con pertinencia académica y de calidad; fomente una cultura de gestión de la información entre la comunidad universitaria y propicie un entorno favorable para el aprendizaje y la generación de nuevos conocimientos.
+                                                            </b>
+                                                          </li>                                              
+                                                        </ul>
+                                                    </div>                                                    
+                                                  </div>
+                                                  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                                    <div class="card-body box-profile">
+
+                                                        <p class="text-muted text-center">OBJETIVO</p>
+                                        
+                                                        <ul class="list-group list-group-unbordered mb-3">
+                                                          <li class="list-group-item">
+                                                            <b> Fortalecer y consolidar el Sistema Bibliotecario mediante la disposición y uso de infraestructura y tecnología informática en red, como medios de acceso a fuentes remotas de información, consulta de materiales y documentos especializados y prestación de servicios documentales integrales que permitan renovar los esquemas y materiales de información en todas las ramas del conocimiento y modernizar los medios de consulta para el apoyo del trabajo académico.
+                                                            </b>
+                                                          </li>                                              
+                                                        </ul>
+                                                    </div>                                                    
+                                                  </div>
+                                       </div>
+                                </div>
+                          
+                      </div>
+                  </section>    
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>
+{% endblock contenido %}
+
+   
+ 
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+      <strong>Copyright &copy; 2020 .</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 3.0.4
+      </div>
+  </footer>
+</div>
+ 
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="{% static 'core/lib/adminlte/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap -->
+<script src="{% static 'core/lib/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- overlayScrollbars -->
+<script src="{% static 'core/lib/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'core/lib/adminlte/js/adminlte.js' %}"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="{% static 'core/lib/adminlte/js/demo.js' %}"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src="{% static 'core/lib/adminlte/plugins/jquery-mousewheel/jquery.mousewheel.js' %}"></script>
+<script src="{% static 'core/lib/adminlte/plugins/raphael/raphael.min.js'%}"></script>
+<!-- ChartJS -->
+<script src="{% static 'core/lib/adminlte/plugins/chart.js/Chart.min.js' %}"></script>
+
+<!-- PAGE SCRIPTS -->
+<script src="{% static 'core/lib/adminlte/js/pages/dashboard2.js' %}"></script>
+{% bootstrap_javascript jquery='full' %}  
+</body>
+</html>
+
+
+

@@ -1,0 +1,44 @@
+{% extends "Alumnos/home.html" %}
+{% load static %}
+{% block contenido %}
+<div class="content-wrapper">
+  <section class="content">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body" >
+                <section id="container">
+                     <div class="careers">                          
+                      <div>
+                        {% if messages %}
+                 
+                     {% for m in messages  %}
+                     
+                     <div class="alert alert-danger alert-dismissible">
+                      <h5><i class=""></i> {{m}}</h5>
+                </div>
+                 
+                     {% endfor %}
+                 
+                 {% endif %}
+                   <h3>{{ mensaje }}</h3>  
+                        <form  class="btn btn-light" method="POST">
+                         <h3>Actualizar Datos</h3>
+                         {{ user_form.as_p}}
+                         {% csrf_token %}
+                         <button type="submit" class="btn btn-block btn-outline-success btn-xs">Actualizar</button> 
+                         <a  class="btn btn-block btn-outline-info btn-xs" href="{% url 'perfil'%}">Cancelar</a>
+                        </form>
+                     
+                     </div>
+                       
+                        
+                    </div>
+                </section>    
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock contenido %}

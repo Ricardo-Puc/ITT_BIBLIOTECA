@@ -1,0 +1,93 @@
+{% extends "Alumnos/home.html" %}
+{% load static %}
+
+{% block contenido %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+  .card {
+    margin: 1rem auto;
+
+  }
+  .table{
+    text-align: center;
+  }
+</style>
+
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row">
+              <div class="col-12">
+                    <div class="card">
+                           
+                            <div class="card-body">
+                                      <section id="container">
+                                              <div class="careers">
+                                              
+                                                  <div class="news-feed">
+                                                        <div class="catalog">
+                                                          <div class="col-md-12 col-sm-6 col-12">
+                                                            <div class="card card-info">
+                                                                <div class="card-header">                                                                
+                                                                  <strong>Realiza tu consulta con el nombre del libro, el nombre del autor o la carrera. </strong><i class="nav-icon fas fa-book"></i> 
+                                                                  <input class="form-control" id="myInput" type="text" placeholder="search...">
+                                                                </div>
+                                                                <div  class="table-responsive">
+                                                                    <table class="table">
+                                                                      <thead class="bg-info">
+                                                                          <tr>
+                                                                            <th></th>
+                                                                            <th>Nombre</th>                                                                            
+                                                                            <th>Autor</th>                                                                            
+                                                                            <th>Carrera</th>
+                                                                            
+                                                                            
+                                                                          </tr>
+                                                                      </thead>
+                                                                      {% for a in libros %}
+                                                                      <tbody id="myTable">
+                                                                        <tr>
+                                                                            <td><a href="{{a.archivo.url }}"> <img style="border-radius: 8%;"  src="{{ a.imagen.url }}" height="120px" width="130xp" ></td></a>
+                                                                            <td>{{a.nombre}}</td>                                                                            
+                                                                            <td>{{a.autor}}</td>
+                                                                            <td>{{a.area}}</td>
+                                                                           
+                                                                            
+                                                                    
+                                                                        </tr>  
+                                                                      </tbody>
+                                                                      {% endfor %}
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                  </div>
+                                              </div>
+                                      </section>
+                            </div>
+                    
+                    </div>
+              </div>
+        </div>
+    </section>
+</div>
+
+ 
+  
+
+
+<script>
+  $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+  </script>
+
+{% endblock contenido %}
